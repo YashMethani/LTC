@@ -18,11 +18,15 @@ server_data_cache/*
 *.sqlite
 *.db
 
-# 4. Whitelist template/preset files for the app
+# 4. Whitelist only preset index files needed by the app
 !presets/*.csv
-!sample_symbols.csv
 
-# 5. Python Bytecode & Environment
+# 5. Local scratch / test files
+yfin.py
+function.py
+sample_symbols.csv
+
+# 6. Python Bytecode & Environment
 __pycache__/
 *.py[cod]
 *$py.class
@@ -33,7 +37,7 @@ env/
 venv/
 ENV/
 
-# 6. IDE and OS metadata
+# 7. IDE and OS metadata
 .vscode/
 .idea/
 .DS_Store
