@@ -503,7 +503,7 @@ with st.sidebar:
     st.markdown("---")
     use_cache = st.checkbox("⚡ Use Database Cache (Fast)", value=True, help="Reuses downloaded historical data stored in the local 'database' folder for instant screening.")
     
-    scan_button = st.button("🚀 Run Live Screener", type="primary", use_container_width=True)
+    scan_button = st.button("🚀 Run Live Screener", type="primary", width=True)
 
 
 # --- Initialize Session State for Results ---
@@ -649,7 +649,7 @@ with tab1:
             
             st.dataframe(
                 df_table[show_cols],
-                use_container_width=True,
+                width=True,
                 height=480,
                 column_config={
                     "Price (₹)": st.column_config.NumberColumn(format="₹%.2f"),
@@ -697,7 +697,7 @@ with tab1:
                     file_name=f"screener_results_{selected_timeframe}_{date.today()}.csv",
                     mime="text/csv",
                     type="primary",
-                    use_container_width=True
+                    width=True
                 )
             with col_d2:
                 # Zip of all stock data
@@ -713,7 +713,7 @@ with tab1:
                     data=zip_buffer.getvalue(),
                     file_name=f"nse_stock_data_{selected_timeframe}_{date.today()}.zip",
                     mime="application/zip",
-                    use_container_width=True
+                    width=True
                 )
         else:
             st.warning("No stocks matched your active filter criteria. Try adjusting the filters in the sidebar.")
@@ -828,7 +828,7 @@ with tab2:
                 margin=dict(l=30, r=30, t=50, b=30)
             )
             
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width=True)
             
             # --- Technical Breakdown Cards & Trade Setup ---
             if sym_meta:
@@ -894,7 +894,7 @@ with tab3:
             if strong_buys:
                 st.markdown(f"**💎 {len(strong_buys)} Triple Indicator Bullish Setups (Strong Buy):**")
                 sb_df = pd.DataFrame(strong_buys)[["Symbol", "Price (₹)", "RSI", "MACD", "Volume"]]
-                st.dataframe(sb_df, use_container_width=True)
+                st.dataframe(sb_df, width=True)
                 
         with col_al2:
             st.markdown("#### 🔴 Bearish Trigger Alerts")
@@ -908,13 +908,13 @@ with tab3:
             if strong_sells:
                 st.markdown(f"**⚠️ {len(strong_sells)} Triple Indicator Bearish Setups (Strong Sell):**")
                 ss_df = pd.DataFrame(strong_sells)[["Symbol", "Price (₹)", "RSI", "MACD", "Volume"]]
-                st.dataframe(ss_df, use_container_width=True)
+                st.dataframe(ss_df, width=True)
 
         st.markdown("---")
         st.markdown("#### 🟡 Watchlist (Approaching Crossover within < 0.75% Gap):")
         if approaching:
             app_df = pd.DataFrame(approaching)[["Symbol", "Price (₹)", "20 EMA (₹)", "50 EMA (₹)", "RSI", "MACD"]]
-            st.dataframe(app_df, use_container_width=True)
+            st.dataframe(app_df, width=True)
         else:
             st.info("No stocks currently approaching an imminent crossover.")
     else:
